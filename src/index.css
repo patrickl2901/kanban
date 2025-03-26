@@ -1,0 +1,72 @@
+:root {
+  font-family: Inter, sans-serif;
+  line-height: 1.5;
+  font-weight: 600;
+
+  color-scheme: light dark;
+  color: #fff;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-primary-dark: #242424;
+  --bg-secondary-dark: #3b3b3b;
+  --fg-primary-dark: #fff;
+  --fg-secondary-dark: #bbbbbb;
+
+  --bg-primary-light: rgba(255, 255, 255, 0.87);
+  --bg-secondary-light: #eeeeee;
+  --fg-primary-light: #000;
+  --fg-secondary-light: #777777;
+
+  --tertiary: #5a5a5a;
+  --accent: #6a43b3;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+button {
+  border-radius: 20px;
+  border-style: none;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover {
+  background-color: #785aae;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

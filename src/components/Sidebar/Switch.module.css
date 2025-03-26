@@ -1,0 +1,42 @@
+.switchContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 50px;
+  height: 26px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.switch {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.2s ease;
+  top: 2.5px;
+  transform: translateX(3px);
+}
+
+.on {
+  transform: translateX(27px);
+}
+
+.off {
+  transform: translateX(3px);
+}
+
+.containerOn {
+  background-color: var(--accent);
+}
+
+.containerOff {
+  background-color: #ccc;
+}
+
+.switchContainer:hover .switch {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}

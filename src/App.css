@@ -1,0 +1,9 @@
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.mainSectionContainer {
+  flex-grow: 1;
+  background-color: var(--bg-primary-dark);
+}

@@ -1,0 +1,17 @@
+.header {
+  background-color: var(--bg-secondary-dark);
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.headerOptionsContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.headerOptionsContainer button {
+  margin-top: 0.6em;
+}
