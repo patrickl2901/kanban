@@ -5,6 +5,14 @@
   margin: 1em 0;
 }
 
+.boardIconCreate {
+  filter: invert(31%) sepia(14%) saturate(6916%) hue-rotate(240deg)
+    brightness(84%) contrast(87%);
+  width: 20px;
+  height: 20px;
+  margin: 1em 0;
+}
+
 .boardTab {
   display: flex;
   align-items: center;
@@ -22,5 +30,25 @@
 }
 
 .boardTab span {
+  margin: 0 1em;
+}
+
+.boardTabCreate {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding-left: 2em;
+  transition: 0.2s ease;
+  color: var(--accent);
+}
+
+.boardTabCreate:hover {
+  cursor: pointer;
+  background-color: var(--fg-primary-dark);
+}
+
+.boardTabCreate span {
   margin: 0 1em;
 }

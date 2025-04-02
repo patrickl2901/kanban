@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import boardIcon from "../../assets/book-solid.svg";
 import styles from "./BoardTab.module.css";
 

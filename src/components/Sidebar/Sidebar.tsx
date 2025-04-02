@@ -7,6 +7,7 @@ import moonIcon from "../../assets/moon-solid.svg";
 import hideIcon from "../../assets/eye-slash-solid.svg";
 import BoardTab from "./BoardTab";
 import Switch from "./Switch";
+import CreateNewBoardTab from "./CreateNewBoardTab";
 
 type SidebarProps = {
   setTheme: (colorTheme: ColorTheme) => void;
@@ -25,6 +26,7 @@ const Sidebar: FC<SidebarProps> = ({ setTheme }) => {
           <BoardTab title="Dummy Board" />
           <BoardTab title="Dummy Board Two" />
           <BoardTab title="One More Dummy Board" />
+          <CreateNewBoardTab />
         </div>
         <div className={styles.sidebarOptionsContainer}>
           <div className={styles.switchThemeContainer}>
