@@ -52,3 +52,7 @@
 .boardTabCreate span {
   margin: 0 1em;
 }
+
+.formSubmit {
+  display: none;
+}

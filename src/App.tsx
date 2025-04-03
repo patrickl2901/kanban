@@ -8,11 +8,11 @@ import { ColorThemeContext } from "./context/ColorThemeContext";
 
 function App() {
   const [theme, setTheme] = useState<ColorTheme>("dark");
-  const [boards, setBoards] = useState<BoardData | null>(null);
+  const [boards, setBoards] = useState<Array<BoardData>>([]);
   return (
     <div className="app">
       <ColorThemeContext.Provider value={theme}>
-        <Sidebar setTheme={setTheme} />
+        <Sidebar setTheme={setTheme} setBoards={setBoards} boards={boards} />
         <div className="mainSectionContainer">
           <Header />
           <h1>kanban board</h1>

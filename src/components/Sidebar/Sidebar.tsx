@@ -8,12 +8,15 @@ import hideIcon from "../../assets/eye-slash-solid.svg";
 import BoardTab from "./BoardTab";
 import Switch from "./Switch";
 import CreateNewBoardTab from "./CreateNewBoardTab";
+import { BoardData } from "../../types/BoardData";
 
 type SidebarProps = {
   setTheme: (colorTheme: ColorTheme) => void;
+  setBoards: (boards: Array<BoardData>) => void;
+  boards: Array<BoardData>;
 };
 
-const Sidebar: FC<SidebarProps> = ({ setTheme }) => {
+const Sidebar: FC<SidebarProps> = ({ setTheme, setBoards, boards }) => {
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.logoContainer}>
@@ -23,10 +26,10 @@ const Sidebar: FC<SidebarProps> = ({ setTheme }) => {
       <div className={styles.sidebarMenuContainer}>
         <div className={styles.selectBoardSectionContainer}>
           <span className={styles.allBoards}>All Boards (count here)</span>
-          <BoardTab title="Dummy Board" />
-          <BoardTab title="Dummy Board Two" />
-          <BoardTab title="One More Dummy Board" />
-          <CreateNewBoardTab />
+          {boards.map((board, index) => {
+            return <BoardTab title={board.title} key={index} />;
+          })}
+          <CreateNewBoardTab setBoards={setBoards} boards={boards} />
         </div>
         <div className={styles.sidebarOptionsContainer}>
           <div className={styles.switchThemeContainer}>
