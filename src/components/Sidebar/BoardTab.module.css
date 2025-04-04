@@ -17,10 +17,13 @@
   display: flex;
   align-items: center;
   width: 80%;
+  height: 3em;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   padding-left: 2em;
   transition: 0.2s ease;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .boardTab:hover {
@@ -37,6 +40,7 @@
   display: flex;
   align-items: center;
   width: 80%;
+  height: 3em;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   padding-left: 2em;
@@ -49,10 +53,26 @@
   background-color: var(--fg-primary-dark);
 }
 
+.boardTabCreate:hover .formTextInput {
+  background-color: var(--fg-primary-dark);
+}
+
 .boardTabCreate span {
   margin: 0 1em;
 }
 
 .formSubmit {
   display: none;
+}
+
+.formTextInput {
+  background-color: var(--bg-secondary-dark);
+  color: var(--accent);
+  border-style: none;
+  transition: background-color 0.2s ease;
+  margin-left: 1em;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  width: calc(100% - 4em - 20px);
 }

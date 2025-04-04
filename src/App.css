@@ -1,9 +1,11 @@
 .app {
   display: flex;
-  height: 100vh;
+  flex-direction: row;
+  height: 100%;
 }
 
 .mainSectionContainer {
   flex-grow: 1;
   background-color: var(--bg-primary-dark);
+  height: 100%;
 }

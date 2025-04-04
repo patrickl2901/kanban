@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 18rem;
-  min-height: 100%;
+  width: 18rem;
+  height: 100%;
   background-color: var(--bg-secondary-dark);
   border-right: 1px solid var(--tertiary);
   color: var(--fg-secondary-dark);
@@ -12,12 +12,9 @@
 .sidebarMenuContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 3em;
-  padding-top: 2em;
-  flex-grow: 1;
   width: 100%;
+  height: calc(100% - 4em);
+  padding-top: 2em;
 }
 
 .logoContainer {
@@ -66,6 +63,9 @@
 .hideSidebarContainer {
   display: flex;
   align-items: center;
+  align-self: flex-start;
+  height: 1em;
+  margin-left: 2em;
   transition: 0.2s ease;
 }
 
@@ -79,8 +79,37 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  height: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-color: var(--tertiary) transparent;
+  margin-top: 1em;
 }
 
-.selectBoardSectionContainer > span {
-  margin: 0 0 1em 2em;
+/* For WebKit browsers (Chrome, Safari, Edge) */
+.selectBoardSectionContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.selectBoardSectionContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.selectBoardSectionContainer::-webkit-scrollbar-thumb {
+  background-color: var(--tertiary);
+  border-radius: 4px;
+}
+
+.sidebarMenuContainer > span {
+  align-self: flex-start;
+  margin-left: 2em;
+}
+
+.sidebarOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 2em;
+  width: 100%;
 }

@@ -24,8 +24,8 @@ const Sidebar: FC<SidebarProps> = ({ setTheme, setBoards, boards }) => {
         <h1>Kanban</h1>
       </div>
       <div className={styles.sidebarMenuContainer}>
+        <span className={styles.allBoards}>All Boards ({boards.length})</span>
         <div className={styles.selectBoardSectionContainer}>
-          <span className={styles.allBoards}>All Boards (count here)</span>
           {boards.map((board, index) => {
             return <BoardTab title={board.title} key={index} />;
           })}

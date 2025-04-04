@@ -29,7 +29,9 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
       tasks: undefined,
     };
 
-    setBoards([...boards, newBoard]);
+    if (title.trim() != "") {
+      setBoards([...boards, newBoard]);
+    }
     e.currentTarget.reset();
     setShowTitleInput(false);
     console.log(boards);
@@ -44,7 +46,13 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
           onSubmit={handleTitleSubmit}
           onClick={(e) => e.stopPropagation()}
         >
-          <input type="text" name="boardTitle" autoFocus />
+          <input
+            type="text"
+            placeholder="Enter board title"
+            name="boardTitle"
+            autoFocus
+            className={styles.formTextInput}
+          />
           <input type="submit" className={styles.formSubmit} />
         </form>
       ) : (
