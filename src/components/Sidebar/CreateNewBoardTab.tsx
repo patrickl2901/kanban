@@ -27,6 +27,7 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
       title,
       columns: undefined,
       tasks: undefined,
+      id: crypto.randomUUID(),
     };
 
     if (title.trim() != "") {

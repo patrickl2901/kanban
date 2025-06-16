@@ -14,9 +14,15 @@ type SidebarProps = {
   setTheme: (colorTheme: ColorTheme) => void;
   setBoards: (boards: Array<BoardData>) => void;
   boards: Array<BoardData>;
+  setSelectedBoard: (board: BoardData) => void;
 };
 
-const Sidebar: FC<SidebarProps> = ({ setTheme, setBoards, boards }) => {
+const Sidebar: FC<SidebarProps> = ({
+  setTheme,
+  setBoards,
+  boards,
+  setSelectedBoard,
+}) => {
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.logoContainer}>
@@ -27,7 +33,15 @@ const Sidebar: FC<SidebarProps> = ({ setTheme, setBoards, boards }) => {
         <span className={styles.allBoards}>All Boards ({boards.length})</span>
         <div className={styles.selectBoardSectionContainer}>
           {boards.map((board, index) => {
-            return <BoardTab title={board.title} key={index} />;
+            return (
+              <BoardTab
+                title={board.title}
+                key={index}
+                setSelectedBoard={setSelectedBoard}
+                id={board.id}
+                boards={boards}
+              />
+            );
           })}
           <CreateNewBoardTab setBoards={setBoards} boards={boards} />
         </div>
