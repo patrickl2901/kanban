@@ -1,9 +1,7 @@
-import { FC } from "react";
-import { Task } from "./task";
+import { BoardColumn } from "./BoardColumn";
 
 export type BoardData = {
   title: string;
-  columns: Array<FC> | undefined;
-  tasks: Array<Task> | undefined;
+  columns: Array<BoardColumn>;
   id: string;
 };

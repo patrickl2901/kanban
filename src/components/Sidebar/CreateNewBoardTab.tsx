@@ -6,11 +6,13 @@ import { BoardData } from "../../types/BoardData";
 type CreateNewBoardTabProps = {
   setBoards: (boards: Array<BoardData>) => void;
   boards: Array<BoardData>;
+  setSelectedBoard: (board: BoardData) => void;
 };
 
 const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
   boards,
   setBoards,
+  setSelectedBoard,
 }) => {
   const [showTitleInput, setShowTitleInput] = useState<boolean>(false);
 
@@ -25,17 +27,17 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
 
     const newBoard: BoardData = {
       title,
-      columns: undefined,
-      tasks: undefined,
+      columns: [],
       id: crypto.randomUUID(),
     };
 
     if (title.trim() != "") {
       setBoards([...boards, newBoard]);
     }
+
+    setSelectedBoard(newBoard);
     e.currentTarget.reset();
     setShowTitleInput(false);
-    console.log(boards);
   };
 
   return (

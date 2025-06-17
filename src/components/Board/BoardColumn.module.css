@@ -1,0 +1,5 @@
+.boardColumn {
+  display: flex;
+  flex-direction: column;
+  min-width: 16rem;
+}

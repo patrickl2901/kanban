@@ -21,19 +21,22 @@
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   padding-left: 2em;
-  transition: 0.2s ease;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .boardTab:hover {
   cursor: pointer;
-  background-color: var(--accent);
+  background-color: var(--accent-secondary);
   color: var(--fg-primary-dark);
 }
 
 .boardTab span {
   margin: 0 1em;
+}
+
+.boardTabSelected {
+  background-color: var(--accent);
 }
 
 .boardTabCreate {
@@ -44,7 +47,6 @@
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   padding-left: 2em;
-  transition: 0.2s ease;
   color: var(--accent);
 }
 

@@ -1,0 +1,14 @@
+.taskCard {
+  background-color: var(--bg-secondary-dark);
+  width: 16rem;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+}
+
+.subtasks {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--fg-secondary-dark);
+}

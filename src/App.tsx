@@ -14,6 +14,10 @@ function App() {
     undefined
   );
 
+  const selectedBoardToDisplay = selectedBoard
+    ? boards.find((b) => b.id === selectedBoard.id)
+    : undefined;
+
   return (
     <div className="app">
       <ColorThemeContext.Provider value={theme}>
@@ -22,11 +26,14 @@ function App() {
           setBoards={setBoards}
           boards={boards}
           setSelectedBoard={setSelectedBoard}
+          selectedBoard={selectedBoard}
         />
         <div className="mainSectionContainer">
           <Header title={selectedBoard ? selectedBoard.title : ""} />
           <MainArea
-            title={selectedBoard ? selectedBoard.title : "no board selected"}
+            board={selectedBoardToDisplay}
+            setBoards={setBoards}
+            boards={boards}
           />
         </div>
       </ColorThemeContext.Provider>

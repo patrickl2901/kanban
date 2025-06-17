@@ -1,0 +1,7 @@
+.mainArea {
+  display: flex;
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow: auto;
+  gap: 1rem;
+}

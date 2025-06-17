@@ -1,0 +1,27 @@
+.createNewBoardColumn {
+  background: #3b3b3b;
+  background: linear-gradient(
+    rgba(59, 59, 59, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 90%
+  );
+  color: var(--fg-secondary-dark);
+  min-width: 18rem;
+  width: 18rem;
+  height: 60vh;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  margin-top: calc(1rem + 24px);
+}
+
+.createNewBoardColumn span {
+  font-size: 2rem;
+}
+
+.createNewBoardColumn:hover {
+  border: 1px solid white;
+  cursor: pointer;
+}

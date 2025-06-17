@@ -15,6 +15,7 @@ type SidebarProps = {
   setBoards: (boards: Array<BoardData>) => void;
   boards: Array<BoardData>;
   setSelectedBoard: (board: BoardData) => void;
+  selectedBoard: BoardData | undefined;
 };
 
 const Sidebar: FC<SidebarProps> = ({
@@ -22,6 +23,7 @@ const Sidebar: FC<SidebarProps> = ({
   setBoards,
   boards,
   setSelectedBoard,
+  selectedBoard,
 }) => {
   return (
     <div className={styles.sidebarContainer}>
@@ -38,12 +40,17 @@ const Sidebar: FC<SidebarProps> = ({
                 title={board.title}
                 key={index}
                 setSelectedBoard={setSelectedBoard}
+                selectedBoard={selectedBoard}
                 id={board.id}
                 boards={boards}
               />
             );
           })}
-          <CreateNewBoardTab setBoards={setBoards} boards={boards} />
+          <CreateNewBoardTab
+            setBoards={setBoards}
+            boards={boards}
+            setSelectedBoard={setSelectedBoard}
+          />
         </div>
         <div className={styles.sidebarOptionsContainer}>
           <div className={styles.switchThemeContainer}>

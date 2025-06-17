@@ -5,7 +5,10 @@
 }
 
 .mainSectionContainer {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   background-color: var(--bg-primary-dark);
   height: 100%;
+  overflow: hidden;
 }
