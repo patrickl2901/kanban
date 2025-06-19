@@ -5,14 +5,16 @@ import { BoardData } from "../../types/BoardData";
 
 type CreateNewBoardColumnProps = {
   boards: Array<BoardData>;
-  setBoards: (boards: Array<BoardData>) => void;
+  setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
   boardId: string;
+  selectedBoard: BoardData;
 };
 
 const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
   boards,
   setBoards,
   boardId,
+  selectedBoard,
 }) => {
   const [showTitleInput, setShowTitleInput] = useState<boolean>(false);
 
@@ -20,43 +22,52 @@ const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
     setShowTitleInput(!showTitleInput);
   };
 
+  const columnNameExists = (columnName: string) => {
+    for (let i = 0; i < selectedBoard.columns.length; i++) {
+      if (selectedBoard.columns[i].name === columnName) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleTitleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const title = formData.get("columnTitle") as string;
 
-    if (title.trim() != "") {
-      // set column title here
-      const newColumn: BoardColumn = {
-        name: title,
-        tasks: [],
-      };
+    if (!columnNameExists(title.trim())) {
+      if (title.trim() != "") {
+        const newColumn: BoardColumn = {
+          name: title,
+          tasks: [],
+        };
 
-      // update boards with added column
-      const updateBoards = (prevBoards: Array<BoardData>) => {
-        const updatedBoards: Array<BoardData> = prevBoards.map((board) => {
-          if (board.id === boardId) {
-            const updatedBoard = {
-              ...board,
-              columns: [...board.columns, newColumn],
-            };
-            return updatedBoard;
-          }
-          return board;
+        setBoards((prevBoards: BoardData[]) => {
+          return prevBoards.map((board) => {
+            if (board.id === boardId) {
+              return {
+                ...board,
+                columns: [...board.columns, newColumn],
+              };
+            }
+            return board;
+          });
         });
-        return updatedBoards;
-      };
 
-      const gigaUpdatedBoards = updateBoards(boards);
-
-      setBoards(gigaUpdatedBoards);
-      console.log("added column.");
-      boards.forEach((board) => {
-        if (board.id == boardId) {
-          console.log(board);
-          console.log(board.columns);
-        }
-      });
+        console.log("added column.");
+        boards.forEach((board) => {
+          if (board.id == boardId) {
+            console.log(board);
+            console.log(board.columns);
+          }
+        });
+      }
+    } else {
+      // TODO: add proper error notification for user
+      console.log(
+        "Could not create column because a column with that name already exists."
+      );
     }
 
     e.currentTarget.reset();

@@ -1,0 +1,118 @@
+.addNewTaskModal {
+  background-color: var(--bg-secondary-dark);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 400px;
+  overflow: hidden;
+}
+
+.addNewTask {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addNewTaskHeading {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.addNewTaskForm {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  overflow: auto;
+}
+
+.addNewTaskForm label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.addNewTaskForm input {
+  font-size: 1rem;
+  font-family: Inter, sans-serif;
+  border: 1px solid var(--tertiary);
+  border-radius: 8px;
+  height: 2rem;
+  padding: 0.2rem 1rem;
+  margin: 0.3rem 1rem 0;
+  min-height: 2rem;
+}
+
+.descriptionInput {
+  resize: none;
+  font-size: 1rem;
+  font-family: Inter, sans-serif;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--tertiary);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.addNewTaskForm button {
+  margin: 0.5rem 1rem 0;
+}
+
+.subtaskInput {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtaskInput input {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.newSubtaskButton {
+  background-color: #fff;
+  color: var(--accent);
+}
+
+.newSubtaskButton:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.submitButton:hover {
+  background-color: #fff;
+  color: var(--accent);
+}
+
+select {
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--tertiary);
+}
+
+.xButton {
+  padding: 0 0.5rem;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--fg-secondary-dark);
+  background-color: transparent;
+  height: 2rem;
+}
+
+.xButton:hover {
+  background-color: transparent;
+  color: #fff;
+}

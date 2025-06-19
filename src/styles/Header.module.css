@@ -15,3 +15,11 @@
 .headerOptionsContainer button {
   margin-top: 0.6em;
 }
+
+.addButtonDisabled {
+  background-color: var(--tertiary);
+}
+
+.addButtonDisabled:hover {
+  background-color: var(--tertiary);
+}

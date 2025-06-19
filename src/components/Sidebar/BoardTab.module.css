@@ -37,6 +37,7 @@
 
 .boardTabSelected {
   background-color: var(--accent);
+  color: var(--fg-primary-dark);
 }
 
 .boardTabCreate {
@@ -57,6 +58,11 @@
 
 .boardTabCreate:hover .formTextInput {
   background-color: var(--fg-primary-dark);
+}
+
+.boardTabCreate .formTextInput:focus {
+  outline: none;
+  border: none;
 }
 
 .boardTabCreate span {

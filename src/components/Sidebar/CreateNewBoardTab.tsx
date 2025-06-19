@@ -4,7 +4,7 @@ import styles from "./BoardTab.module.css";
 import { BoardData } from "../../types/BoardData";
 
 type CreateNewBoardTabProps = {
-  setBoards: (boards: Array<BoardData>) => void;
+  setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
   boards: Array<BoardData>;
   setSelectedBoard: (board: BoardData) => void;
 };
@@ -33,9 +33,9 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
 
     if (title.trim() != "") {
       setBoards([...boards, newBoard]);
+      setSelectedBoard(newBoard);
     }
 
-    setSelectedBoard(newBoard);
     e.currentTarget.reset();
     setShowTitleInput(false);
   };
@@ -54,6 +54,7 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
             placeholder="Enter board title"
             name="boardTitle"
             autoFocus
+            autoComplete="off"
             className={styles.formTextInput}
           />
           <input type="submit" className={styles.formSubmit} />
