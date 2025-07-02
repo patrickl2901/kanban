@@ -7,6 +7,9 @@ import Header from "./components/Header";
 import MainArea from "./components/MainArea";
 import { ColorThemeContext } from "./context/ColorThemeContext";
 import AddNewTaskModal from "./components/AddNewTaskModal";
+import TaskDetailsModal from "./components/TaskDetailsModal";
+import { Task } from "./types/task";
+import { Subtask } from "./types/Subtask";
 
 function App() {
   const [theme, setTheme] = useState<ColorTheme>("dark");
@@ -14,7 +17,10 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState<BoardData | undefined>(
     undefined
   );
-  const [showTaskModal, setShowTaskModal] = useState<boolean>(false);
+  const [showAddTaskModal, setShowAddTaskModal] = useState<boolean>(false);
+  const [showTaskDetailsModal, setShowTaskDetailsModal] =
+    useState<boolean>(false);
+  const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
 
   const selectedBoardToDisplay = selectedBoard
     ? boards.find((b) => b.id === selectedBoard.id)
@@ -24,16 +30,41 @@ function App() {
     selectedBoardToDisplay !== undefined &&
     selectedBoardToDisplay.columns.length !== 0;
 
+  const getDoneSubtasks = (subtasks: Array<Subtask> | undefined) => {
+    let doneCount = 0;
+    if (!subtasks) {
+      return 0;
+    }
+    for (let i = 0; i < subtasks.length; i++) {
+      if (subtasks[i].done) {
+        doneCount++;
+      }
+    }
+    return doneCount;
+  };
+
   return (
     <div className="app">
       <ColorThemeContext.Provider value={theme}>
-        {showTaskModal && (
+        {showAddTaskModal && (
           <div className="overlay">
             <AddNewTaskModal
               columns={selectedBoardToDisplay!.columns}
               board={selectedBoardToDisplay!}
               setBoards={setBoards}
-              setShowTaskModal={setShowTaskModal}
+              setShowTaskModal={setShowAddTaskModal}
+            />
+          </div>
+        )}
+        {showTaskDetailsModal && (
+          <div className="overlay">
+            <TaskDetailsModal
+              boards={boards}
+              setBoards={setBoards}
+              selectedBoard={selectedBoardToDisplay!}
+              selectedTask={selectedTask!}
+              setShowTaskDetailsModal={setShowTaskDetailsModal}
+              getDoneSubtasks={getDoneSubtasks}
             />
           </div>
         )}
@@ -47,13 +78,16 @@ function App() {
         <div className="mainSectionContainer">
           <Header
             title={selectedBoard ? selectedBoard.title : ""}
-            setShowTaskModal={setShowTaskModal}
+            setShowTaskModal={setShowAddTaskModal}
             enableAddButton={enableAddTaskButton}
           />
           <MainArea
             board={selectedBoardToDisplay}
             setBoards={setBoards}
             boards={boards}
+            setShowTaskDetailsModal={setShowTaskDetailsModal}
+            setSelectedTask={setSelectedTask}
+            getDoneSubtasks={getDoneSubtasks}
           />
         </div>
       </ColorThemeContext.Provider>

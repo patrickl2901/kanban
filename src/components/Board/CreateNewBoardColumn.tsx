@@ -87,6 +87,7 @@ const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
             placeholder="Enter column title"
             name="columnTitle"
             autoFocus
+            autoComplete="off"
             className={styles.formTextInput}
           />
           <input type="submit" className={styles.formSubmit} />

@@ -4,14 +4,26 @@ import { BoardData } from "../types/BoardData";
 import styles from "../styles/MainArea.module.css";
 import BoardColumn from "./Board/BoardColumn";
 import CreateNewBoardColumn from "./Board/CreateNewBoardColumn";
+import { Task } from "../types/task";
+import { Subtask } from "../types/Subtask";
 
 type MainAreaProps = {
   board: BoardData | undefined;
   setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
   boards: Array<BoardData>;
+  setShowTaskDetailsModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedTask: React.Dispatch<React.SetStateAction<Task | undefined>>;
+  getDoneSubtasks: (subtasks: Array<Subtask>) => number;
 };
 
-const MainArea: FC<MainAreaProps> = ({ board, setBoards, boards }) => {
+const MainArea: FC<MainAreaProps> = ({
+  board,
+  setBoards,
+  boards,
+  setShowTaskDetailsModal,
+  setSelectedTask,
+  getDoneSubtasks,
+}) => {
   const renderColumns = () => {
     if (!board) {
       return null;
@@ -32,6 +44,10 @@ const MainArea: FC<MainAreaProps> = ({ board, setBoards, boards }) => {
                 key={crypto.randomUUID()}
                 name={task.title}
                 subtasks={task.subtasks}
+                setShowTaskDetailsModal={setShowTaskDetailsModal}
+                setSelectedTask={setSelectedTask}
+                task={task}
+                getDoneSubtasks={getDoneSubtasks}
               />
             );
           })}

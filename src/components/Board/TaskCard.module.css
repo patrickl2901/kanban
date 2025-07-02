@@ -6,6 +6,11 @@
   border: 1px solid transparent;
 }
 
+.taskCard:hover {
+  cursor: pointer;
+  border: 1px solid white;
+}
+
 .subtasks {
   margin: 0;
   font-size: 0.8rem;

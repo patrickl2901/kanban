@@ -5,4 +5,5 @@ export type Task = {
   description?: string;
   status: string;
   subtasks: Array<Subtask>;
+  id: string;
 };

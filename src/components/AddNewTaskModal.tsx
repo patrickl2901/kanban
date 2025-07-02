@@ -7,7 +7,7 @@ import { Task } from "../types/task";
 
 type AddNewTaskModalProps = {
   columns: Array<BoardColumn>;
-  setShowTaskModal: (show: boolean) => void;
+  setShowTaskModal: React.Dispatch<React.SetStateAction<boolean>>;
   board: BoardData;
   setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
 };
@@ -55,6 +55,7 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
       description: taskDescription,
       status: taskStatus,
       subtasks: newSubtasks,
+      id: crypto.randomUUID(),
     };
 
     const updatedColumn: BoardColumn = {
@@ -171,7 +172,7 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
           + Add New Subtask
         </button>
         <label htmlFor="status">Status</label>
-        <select name="status" id="status">
+        <select name="status" id="status" className={styles.statusSelect}>
           {columns.map((column) => {
             return <option value={column.name}>{column.name}</option>;
           })}
