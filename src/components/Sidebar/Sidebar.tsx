@@ -11,10 +11,10 @@ import CreateNewBoardTab from "./CreateNewBoardTab";
 import { BoardData } from "../../types/BoardData";
 
 type SidebarProps = {
-  setTheme: (colorTheme: ColorTheme) => void;
-  setBoards: (boards: Array<BoardData>) => void;
+  setTheme: React.Dispatch<React.SetStateAction<ColorTheme>>;
+  setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
   boards: Array<BoardData>;
-  setSelectedBoard: (board: BoardData) => void;
+  setSelectedBoard: React.Dispatch<React.SetStateAction<BoardData | undefined>>;
   selectedBoard: BoardData | undefined;
 };
 

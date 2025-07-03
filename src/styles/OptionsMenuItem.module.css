@@ -1,0 +1,26 @@
+.menuItem {
+  background-color: var(--tertiary);
+  display: flex;
+  align-items: center;
+  padding-inline: 1rem;
+  height: 2.5rem;
+}
+
+.menuItem:first-of-type {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.menuItem:last-of-type {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.menuItem:hover {
+  cursor: pointer;
+  background-color: var(--bg-secondary-dark);
+}
+
+.warnColor {
+  color: rgb(220, 50, 50);
+}

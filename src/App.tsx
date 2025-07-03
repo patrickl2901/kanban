@@ -10,6 +10,7 @@ import AddNewTaskModal from "./components/AddNewTaskModal";
 import TaskDetailsModal from "./components/TaskDetailsModal";
 import { Task } from "./types/task";
 import { Subtask } from "./types/Subtask";
+import ConfirmationModal from "./components/ConfirmationModal";
 
 function App() {
   const [theme, setTheme] = useState<ColorTheme>("dark");
@@ -20,6 +21,8 @@ function App() {
   const [showAddTaskModal, setShowAddTaskModal] = useState<boolean>(false);
   const [showTaskDetailsModal, setShowTaskDetailsModal] =
     useState<boolean>(false);
+  const [showConfirmationModal, setShowConfirmationModal] =
+    useState<boolean>(true);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
 
   const selectedBoardToDisplay = selectedBoard
@@ -41,6 +44,21 @@ function App() {
       }
     }
     return doneCount;
+  };
+
+  const deleteSelectedBoard = (
+    selected: BoardData,
+    setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>,
+    setSelectedBoard: React.Dispatch<
+      React.SetStateAction<BoardData | undefined>
+    >
+  ) => {
+    setBoards((prev) => {
+      return prev.filter((board) => {
+        return selected.id !== board.id;
+      });
+    });
+    setSelectedBoard(undefined);
   };
 
   return (
@@ -68,6 +86,16 @@ function App() {
             />
           </div>
         )}
+        {showConfirmationModal && (
+          <div className="overlay">
+            <ConfirmationModal
+              onConfirm={() =>
+                deleteSelectedBoard(selectedBoard!, setBoards, setSelectedBoard)
+              }
+              setShowConfirmationModal={setShowConfirmationModal}
+            />
+          </div>
+        )}
         <Sidebar
           setTheme={setTheme}
           setBoards={setBoards}
@@ -78,8 +106,10 @@ function App() {
         <div className="mainSectionContainer">
           <Header
             title={selectedBoard ? selectedBoard.title : ""}
+            selectedBoard={selectedBoard}
             setShowTaskModal={setShowAddTaskModal}
             enableAddButton={enableAddTaskButton}
+            setShowConfirmationModal={setShowConfirmationModal}
           />
           <MainArea
             board={selectedBoardToDisplay}

@@ -6,7 +6,7 @@ import { BoardData } from "../../types/BoardData";
 type CreateNewBoardTabProps = {
   setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
   boards: Array<BoardData>;
-  setSelectedBoard: (board: BoardData) => void;
+  setSelectedBoard: React.Dispatch<React.SetStateAction<BoardData | undefined>>;
 };
 
 const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
