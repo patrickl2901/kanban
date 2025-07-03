@@ -11,7 +11,6 @@ type CreateNewBoardColumnProps = {
 };
 
 const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
-  boards,
   setBoards,
   boardId,
   selectedBoard,
@@ -43,8 +42,8 @@ const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
           tasks: [],
         };
 
-        setBoards((prevBoards: BoardData[]) => {
-          return prevBoards.map((board) => {
+        setBoards((prev) => {
+          return prev.map((board) => {
             if (board.id === boardId) {
               return {
                 ...board,
@@ -53,14 +52,6 @@ const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
             }
             return board;
           });
-        });
-
-        console.log("added column.");
-        boards.forEach((board) => {
-          if (board.id == boardId) {
-            console.log(board);
-            console.log(board.columns);
-          }
         });
       }
     } else {

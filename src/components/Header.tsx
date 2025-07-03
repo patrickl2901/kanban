@@ -11,6 +11,9 @@ type HeaderProps = {
   setShowTaskModal: React.Dispatch<React.SetStateAction<boolean>>;
   enableAddButton: boolean;
   setShowConfirmationModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setConfirmationModalOpenedBy: React.Dispatch<
+    React.SetStateAction<"boardOptions" | "boardColumn" | undefined>
+  >;
 };
 
 const Header: FC<HeaderProps> = ({
@@ -19,6 +22,7 @@ const Header: FC<HeaderProps> = ({
   setShowTaskModal,
   enableAddButton,
   setShowConfirmationModal,
+  setConfirmationModalOpenedBy,
 }) => {
   return (
     <header className={styles.header}>
@@ -36,7 +40,10 @@ const Header: FC<HeaderProps> = ({
             title="Delete Board"
             icon={<TrashIcon />}
             warn={true}
-            handleOnClick={() => setShowConfirmationModal(true)}
+            handleOnClick={() => {
+              setShowConfirmationModal(true);
+              setConfirmationModalOpenedBy("boardOptions");
+            }}
           />
         </OptionsMenu>
       </div>

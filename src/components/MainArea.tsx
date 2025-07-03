@@ -14,6 +14,11 @@ type MainAreaProps = {
   setShowTaskDetailsModal: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedTask: React.Dispatch<React.SetStateAction<Task | undefined>>;
   getDoneSubtasks: (subtasks: Array<Subtask>) => number;
+  setShowConfirmationModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setConfirmationModalOpenedBy: React.Dispatch<
+    React.SetStateAction<"boardOptions" | "boardColumn" | undefined>
+  >;
+  setColumnToDelete: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 const MainArea: FC<MainAreaProps> = ({
@@ -23,6 +28,9 @@ const MainArea: FC<MainAreaProps> = ({
   setShowTaskDetailsModal,
   setSelectedTask,
   getDoneSubtasks,
+  setShowConfirmationModal,
+  setConfirmationModalOpenedBy,
+  setColumnToDelete,
 }) => {
   const renderColumns = () => {
     if (!board) {
@@ -37,6 +45,12 @@ const MainArea: FC<MainAreaProps> = ({
           key={crypto.randomUUID()}
           name={column.name}
           tasksCount={column.tasks.length}
+          boards={boards}
+          setBoards={setBoards}
+          selectedBoard={board}
+          setShowConfirmationModal={setShowConfirmationModal}
+          setConfirmationModalOpenedBy={setConfirmationModalOpenedBy}
+          setColumnToDelete={setColumnToDelete}
         >
           {column.tasks.map((task) => {
             return (

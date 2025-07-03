@@ -23,7 +23,13 @@ function App() {
     useState<boolean>(false);
   const [showConfirmationModal, setShowConfirmationModal] =
     useState<boolean>(false);
+  const [confirmationModalOpenedBy, setConfirmationModalOpenedBy] = useState<
+    "boardOptions" | "boardColumn" | undefined
+  >(undefined);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
+  const [columnToDelete, setColumnToDelete] = useState<string | undefined>(
+    undefined
+  );
 
   const selectedBoardToDisplay = selectedBoard
     ? boards.find((b) => b.id === selectedBoard.id)
@@ -61,6 +67,33 @@ function App() {
     setSelectedBoard(undefined);
   };
 
+  const deleteSelectedColumn = () => {
+    console.log("column deleted");
+    for (let i = 0; i < boards.length; i++) {
+      if (boards[i].id === selectedBoard!.id) {
+        const updatedBoard: BoardData = {
+          ...boards[i],
+          columns: [
+            ...boards[i].columns.filter((prev) => {
+              return prev.name !== columnToDelete;
+            }),
+          ],
+        };
+        setBoards((prev) => {
+          return prev.map((board) => {
+            return board.id === selectedBoard!.id ? updatedBoard : board;
+          });
+        });
+      }
+    }
+  };
+
+  const confirmationModalHandlers = {
+    boardOptions: () =>
+      deleteSelectedBoard(selectedBoard!, setBoards, setSelectedBoard),
+    boardColumn: () => deleteSelectedColumn(),
+  };
+
   return (
     <div className="app">
       <ColorThemeContext.Provider value={theme}>
@@ -89,10 +122,16 @@ function App() {
         {showConfirmationModal && (
           <div className="overlay">
             <ConfirmationModal
-              onConfirm={() =>
-                deleteSelectedBoard(selectedBoard!, setBoards, setSelectedBoard)
+              onConfirm={
+                confirmationModalOpenedBy !== undefined
+                  ? confirmationModalHandlers[confirmationModalOpenedBy]
+                  : () =>
+                      console.error(
+                        "ConfirmationModal: No handler for undefined."
+                      )
               }
               setShowConfirmationModal={setShowConfirmationModal}
+              setConfirmationModalOpenedBy={setConfirmationModalOpenedBy}
             />
           </div>
         )}
@@ -110,6 +149,7 @@ function App() {
             setShowTaskModal={setShowAddTaskModal}
             enableAddButton={enableAddTaskButton}
             setShowConfirmationModal={setShowConfirmationModal}
+            setConfirmationModalOpenedBy={setConfirmationModalOpenedBy}
           />
           <MainArea
             board={selectedBoardToDisplay}
@@ -118,6 +158,9 @@ function App() {
             setShowTaskDetailsModal={setShowTaskDetailsModal}
             setSelectedTask={setSelectedTask}
             getDoneSubtasks={getDoneSubtasks}
+            setShowConfirmationModal={setShowConfirmationModal}
+            setConfirmationModalOpenedBy={setConfirmationModalOpenedBy}
+            setColumnToDelete={setColumnToDelete}
           />
         </div>
       </ColorThemeContext.Provider>

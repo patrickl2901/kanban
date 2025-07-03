@@ -3,3 +3,21 @@
   flex-direction: column;
   min-width: 16rem;
 }
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteButton {
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+  background: transparent;
+  color: var(--fg-secondary-dark);
+}
+
+.deleteButton:hover {
+  background: transparent;
+  color: var(--fg-primary-dark);
+}
