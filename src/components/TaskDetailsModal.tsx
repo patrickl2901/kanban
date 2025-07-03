@@ -26,6 +26,9 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
   const [selectedStatus, setSelectedStatus] = useState<string>(
     selectedTask.status
   );
+  const [deleteButtonText, setDeleteButtonText] = useState<
+    "Delete" | "Confirm Delete"
+  >("Delete");
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -160,6 +163,47 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
     setShowTaskDetailsModal(false);
   };
 
+  const handleDeleteTask = () => {
+    if (deleteButtonText === "Delete") {
+      setDeleteButtonText("Confirm Delete");
+      return;
+    }
+    setDeleteButtonText("Delete");
+
+    for (let i = 0; i < boards.length; i++) {
+      if (boards[i].id === selectedBoard?.id) {
+        for (let j = 0; j < boards[i].columns.length; j++) {
+          if (boards[i].columns[j].name === selectedTask.status) {
+            const updatedColumn: BoardColumn = {
+              ...boards[i].columns[j],
+              tasks: [
+                ...boards[i].columns[j].tasks.filter((prev) => {
+                  return prev.id !== selectedTask.id;
+                }),
+              ],
+            };
+            const updatedBoard: BoardData = {
+              ...boards[i],
+              columns: [
+                ...boards[i].columns.map((prev) => {
+                  return prev.name === selectedTask.status
+                    ? updatedColumn
+                    : prev;
+                }),
+              ],
+            };
+            setBoards((prev) => {
+              return prev.map((board) => {
+                return board.id === selectedBoard.id ? updatedBoard : board;
+              });
+            });
+          }
+        }
+      }
+    }
+    handleCloseModal();
+  };
+
   // TODO: style custom checkbox to use accent color
   return (
     <div className={styles.taskDetailsModal}>
@@ -215,6 +259,13 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
           </select>
         </div>
         <div className={styles.submitButtonContainer}>
+          <button
+            type="button"
+            className={styles.deleteButton}
+            onClick={handleDeleteTask}
+          >
+            {deleteButtonText}
+          </button>
           <button type="submit">Save & Close</button>
         </div>
       </form>

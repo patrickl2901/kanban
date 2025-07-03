@@ -22,5 +22,5 @@
 }
 
 .warnColor {
-  color: rgb(220, 50, 50);
+  color: var(--warn);
 }

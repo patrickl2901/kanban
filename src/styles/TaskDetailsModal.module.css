@@ -71,5 +71,15 @@
 
 .submitButtonContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.deleteButton {
+  background-color: white;
+  color: var(--warn);
+}
+
+.deleteButton:hover {
+  background-color: var(--warn);
+  color: white;
 }

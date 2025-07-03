@@ -22,7 +22,7 @@ function App() {
   const [showTaskDetailsModal, setShowTaskDetailsModal] =
     useState<boolean>(false);
   const [showConfirmationModal, setShowConfirmationModal] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
 
   const selectedBoardToDisplay = selectedBoard

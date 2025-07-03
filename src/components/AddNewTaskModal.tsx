@@ -71,19 +71,12 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
         }),
       ],
     };
-    console.log("updatedBoard:");
-    console.log(updatedBoard);
 
     setBoards((prevBoards) => {
       return prevBoards.map((prevBoard) => {
         return prevBoard.id === updatedBoard.id ? updatedBoard : prevBoard;
       });
     });
-
-    console.log("task form submitted.");
-
-    console.log(newSubtasks);
-    console.log(newTask);
 
     setSubtasks([""]);
     e.currentTarget.reset();
