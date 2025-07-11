@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import styles from "./BoardColumn.module.css";
 import { BoardData } from "../../types/BoardData";
+import { ColorThemeContext } from "../../context/ColorThemeContext";
 
 type BoardColumnProps = {
   children: React.ReactNode;
@@ -27,6 +28,8 @@ const BoardColumn: FC<BoardColumnProps> = ({
   setConfirmationModalOpenedBy,
   setColumnToDelete,
 }) => {
+  const theme = useContext(ColorThemeContext);
+
   const handleDeleteColumn = () => {
     console.log("delete column clicked");
     for (let i = 0; i < boards.length; i++) {
@@ -62,7 +65,11 @@ const BoardColumn: FC<BoardColumnProps> = ({
 
   return (
     <div className={styles.boardColumn}>
-      <div className={styles.columnHeader}>
+      <div
+        className={
+          theme === "dark" ? styles.columnHeader : styles.columnHeaderLight
+        }
+      >
         <div className={styles.columnStatus}>
           {name} ({tasksCount})
         </div>

@@ -1,5 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import styles from "../styles/OptionsMenuItem.module.css";
+import { ColorThemeContext } from "../context/ColorThemeContext";
 
 export type OptionsMenuItemProps = {
   title: string;
@@ -16,9 +17,11 @@ const OptionsMenuItem: FC<OptionsMenuItemProps> = ({
   handleOnClick,
   setOpen,
 }) => {
+  const theme = useContext(ColorThemeContext);
+
   return (
     <div
-      className={styles.menuItem}
+      className={theme === "dark" ? styles.menuItem : styles.menuItemLight}
       onClick={() => {
         handleOnClick();
         if (setOpen) {

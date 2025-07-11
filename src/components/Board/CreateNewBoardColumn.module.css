@@ -16,12 +16,39 @@
   margin-top: calc(1rem + 24px);
 }
 
+.createNewBoardColumnLight {
+  background: #eeeeee;
+  background: linear-gradient(
+    rgba(238, 238, 238, 0.3) 0%,
+    rgba(119, 119, 119, 0.3) 90%
+  );
+  color: var(--fg-secondary-light);
+  min-width: 18rem;
+  width: 18rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  margin-top: calc(1rem + 24px);
+}
+
 .createNewBoardColumn span {
+  font-size: 2rem;
+}
+
+.createNewBoardColumnLight span {
   font-size: 2rem;
 }
 
 .createNewBoardColumn:hover {
   border: 1px solid white;
+  cursor: pointer;
+}
+
+.createNewBoardColumnLight:hover {
+  border: 1px solid var(--tertiary);
   cursor: pointer;
 }
 
@@ -35,4 +62,14 @@
   border-radius: 8px;
   border: 1px solid var(--tertiary);
   padding: 0.5rem 1rem;
+}
+
+.createNewBoardColumnFormLight input {
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--tertiary);
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-secondary-light);
+  color: var(--fg-primary-light);
 }

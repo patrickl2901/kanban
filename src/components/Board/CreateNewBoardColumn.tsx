@@ -1,7 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import styles from "./CreateNewBoardColumn.module.css";
 import { BoardColumn } from "../../types/BoardColumn";
 import { BoardData } from "../../types/BoardData";
+import { ColorThemeContext } from "../../context/ColorThemeContext";
 
 type CreateNewBoardColumnProps = {
   boards: Array<BoardData>;
@@ -15,6 +16,7 @@ const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
   boardId,
   selectedBoard,
 }) => {
+  const theme = useContext(ColorThemeContext);
   const [showTitleInput, setShowTitleInput] = useState<boolean>(false);
 
   const toggleShowTitleInput = () => {
@@ -66,10 +68,21 @@ const CreateNewBoardColumn: FC<CreateNewBoardColumnProps> = ({
   };
 
   return (
-    <div className={styles.createNewBoardColumn} onClick={toggleShowTitleInput}>
+    <div
+      className={
+        theme === "dark"
+          ? styles.createNewBoardColumn
+          : styles.createNewBoardColumnLight
+      }
+      onClick={toggleShowTitleInput}
+    >
       {showTitleInput ? (
         <form
-          className={styles.createNewBoardColumnForm}
+          className={
+            theme === "dark"
+              ? styles.createNewBoardColumnForm
+              : styles.createNewBoardColumnFormLight
+          }
           onSubmit={handleTitleSubmit}
           onClick={(e) => e.stopPropagation()}
         >

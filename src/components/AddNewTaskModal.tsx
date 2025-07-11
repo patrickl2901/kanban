@@ -1,9 +1,10 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useContext, useRef, useState } from "react";
 import { BoardColumn } from "../types/BoardColumn";
 import styles from "../styles/AddNewTaskModal.module.css";
 import { BoardData } from "../types/BoardData";
 import { Subtask } from "../types/Subtask";
 import { Task } from "../types/task";
+import { ColorThemeContext } from "../context/ColorThemeContext";
 
 type AddNewTaskModalProps = {
   columns: Array<BoardColumn>;
@@ -20,6 +21,7 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
 }) => {
   const [subtasks, setSubtasks] = useState<Array<string>>([""]);
   const formRef = useRef<HTMLFormElement>(null);
+  const theme = useContext(ColorThemeContext);
 
   const resetForm = () => {
     formRef.current?.reset();
@@ -105,8 +107,16 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
   };
 
   return (
-    <div className={styles.addNewTaskModal}>
-      <div className={styles.addNewTask}>
+    <div
+      className={
+        theme === "dark" ? styles.addNewTaskModal : styles.addNewTaskModalLight
+      }
+    >
+      <div
+        className={
+          theme === "dark" ? styles.addNewTask : styles.addNewTaskLight
+        }
+      >
         <p className={styles.addNewTaskHeading}>Add New Task</p>
         <button
           type="button"
@@ -117,7 +127,9 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
         </button>
       </div>
       <form
-        className={styles.addNewTaskForm}
+        className={
+          theme === "dark" ? styles.addNewTaskForm : styles.addNewTaskFormLight
+        }
         onSubmit={handleSubmit}
         ref={formRef}
       >
@@ -136,7 +148,11 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
           name="taskDescription"
           autoComplete="off"
           rows={6}
-          className={styles.descriptionInput}
+          className={
+            theme === "dark"
+              ? styles.descriptionInput
+              : styles.descriptionInputLight
+          }
           placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little."
         />
         <label>Subtasks</label>
@@ -151,7 +167,9 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
             <button
               type="button"
               onClick={() => handleRemoveSubtask(index)}
-              className={styles.xButton}
+              className={
+                theme === "dark" ? styles.xButton : styles.xButtonLight
+              }
             >
               ✕
             </button>
@@ -160,17 +178,32 @@ const AddNewTaskModal: FC<AddNewTaskModalProps> = ({
         <button
           type="button"
           onClick={handleNewSubtask}
-          className={styles.newSubtaskButton}
+          className={
+            theme === "dark"
+              ? styles.newSubtaskButton
+              : styles.newSubtaskButtonLight
+          }
         >
           + Add New Subtask
         </button>
         <label htmlFor="status">Status</label>
-        <select name="status" id="status" className={styles.statusSelect}>
+        <select
+          name="status"
+          id="status"
+          className={
+            theme === "dark" ? styles.statusSelect : styles.statusSelectLight
+          }
+        >
           {columns.map((column) => {
             return <option value={column.name}>{column.name}</option>;
           })}
         </select>
-        <button type="submit" className={styles.submitButton}>
+        <button
+          type="submit"
+          className={
+            theme === "dark" ? styles.submitButton : styles.submitButtonLight
+          }
+        >
           Create Task
         </button>
       </form>

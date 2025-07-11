@@ -9,6 +9,21 @@
   background-color: var(--bg-secondary-dark);
   border-right: 1px solid var(--tertiary);
   color: var(--fg-secondary-dark);
+  transition: background-color 0.3s ease;
+}
+
+.sidebarContainerLight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18rem;
+  min-width: 18rem;
+  max-width: 18rem;
+  height: 100%;
+  background-color: var(--bg-secondary-light);
+  border-right: 1px solid var(--tertiary);
+  color: var(--fg-secondary-light);
+  transition: background-color 0.3s ease;
 }
 
 .sidebarMenuContainer {
@@ -31,10 +46,31 @@
   color: var(--fg-primary-dark);
 }
 
+.logoContainerLight {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  padding: 1em 1em;
+}
+
+.logoContainerLight > h1 {
+  margin: 0 0.5em;
+  color: var(--fg-primary-light);
+}
+
 .barsImg {
   width: 2em;
   height: 2em;
   filter: invert(100%);
+}
+
+.barsImgLight {
+  width: 2em;
+  height: 2em;
+}
+
+.allBoardsLight {
+  color: var(--fg-primary-light);
 }
 
 .switchThemeContainer {
@@ -46,6 +82,19 @@
   height: 3em;
   margin: 1em 0;
   border-radius: 8px;
+  transition: background-color, 0.3s ease;
+}
+
+.switchThemeContainerLight {
+  background-color: var(--bg-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14em;
+  height: 3em;
+  margin: 1em 0;
+  border-radius: 8px;
+  transition: background-color, 0.3s ease;
 }
 
 .themeIcon {
@@ -55,10 +104,24 @@
   padding: 0 1em;
 }
 
+.themeIconLight {
+  width: 20px;
+  height: 20px;
+  filter: invert(50%);
+  padding: 0 1em;
+}
+
 .hideIcon {
   width: 20px;
   height: 20px;
   filter: invert(100%);
+  padding: 0 0.7em;
+}
+
+.hideIconLight {
+  width: 20px;
+  height: 20px;
+  filter: invert(50%);
   padding: 0 0.7em;
 }
 
@@ -76,6 +139,20 @@
   color: var(--fg-primary-dark);
 }
 
+.hideSidebarContainerLight {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  height: 1em;
+  margin-left: 2em;
+  transition: 0.2s ease;
+}
+
+.hideSidebarContainerLight:hover {
+  cursor: pointer;
+  color: var(--accent);
+}
+
 .selectBoardSectionContainer {
   display: flex;
   flex-direction: column;
@@ -88,7 +165,6 @@
   margin-top: 1em;
 }
 
-/* For WebKit browsers (Chrome, Safari, Edge) */
 .selectBoardSectionContainer::-webkit-scrollbar {
   width: 8px;
 }
@@ -114,4 +190,5 @@
   margin-top: auto;
   margin-bottom: 2em;
   width: 100%;
+  transition: background-color, 0.3s ease;
 }

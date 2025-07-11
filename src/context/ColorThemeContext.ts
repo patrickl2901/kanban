@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { colorThemeType } from "../types/ColorTheme";
+import { ColorTheme } from "../types/ColorTheme";
 
-export const ColorThemeContext = createContext<colorThemeType>("dark");
+export const ColorThemeContext = createContext<ColorTheme>("dark");

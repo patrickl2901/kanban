@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import styles from "./Switch.module.css";
+import { ColorTheme } from "../../types/ColorTheme";
+import { ColorThemeContext } from "../../context/ColorThemeContext";
 
-const Switch = () => {
+type SwitchProps = {
+  setTheme: React.Dispatch<React.SetStateAction<ColorTheme>>;
+};
+
+const Switch: FC<SwitchProps> = ({ setTheme }) => {
   const [isOn, setIsOn] = useState(true);
+  const theme = useContext(ColorThemeContext);
 
   const toggleSwitch = () => {
     setIsOn(!isOn);
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
   };
 
   return (

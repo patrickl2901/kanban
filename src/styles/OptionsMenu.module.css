@@ -15,10 +15,17 @@
   transform: scale(115%);
 }
 
-.optionsButton img {
+.optionsIcon {
   height: 1.5rem;
   width: 1.5rem;
   filter: invert(100%);
+  transition: 0.3s ease;
+}
+
+.optionsIconLight {
+  height: 1.5rem;
+  width: 1.5rem;
+  filter: invert(0%);
   transition: 0.3s ease;
 }
 

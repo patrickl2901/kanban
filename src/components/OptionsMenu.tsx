@@ -1,7 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import ellipsis from "../assets/ellipsis-vertical-solid.svg";
 import styles from "../styles/OptionsMenu.module.css";
 import { OptionsMenuItemProps } from "./OptionsMenuItem";
+import { ColorThemeContext } from "../context/ColorThemeContext";
 
 type OptionsMenuProps = {
   children:
@@ -12,6 +13,7 @@ type OptionsMenuProps = {
 
 const OptionsMenu: FC<OptionsMenuProps> = ({ children, disabled }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const theme = useContext(ColorThemeContext);
 
   const handleOnClick = () => {
     setOpen(!open);
@@ -31,7 +33,13 @@ const OptionsMenu: FC<OptionsMenuProps> = ({ children, disabled }) => {
         onClick={handleOnClick}
         disabled={disabled}
       >
-        <img src={ellipsis} alt="options" />
+        <img
+          src={ellipsis}
+          alt="options"
+          className={
+            theme === "dark" ? styles.optionsIcon : styles.optionsIconLight
+          }
+        />
       </button>
       <div className={styles.dropdown}>{open && enhancedChildren}</div>
     </div>

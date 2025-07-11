@@ -5,6 +5,25 @@
   justify-content: space-between;
   padding: 1em;
   border-bottom: 1px solid var(--tertiary);
+  transition: background-color, color, 0.3s ease;
+}
+
+.headerLight {
+  background-color: var(--bg-secondary-light);
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid var(--tertiary);
+  transition: background-color, color, 0.3s ease;
+}
+
+.header h1 {
+  color: var(--fg-primary-dark);
+}
+
+.headerLight h1 {
+  color: var(--fg-primary-light);
 }
 
 .headerOptionsContainer {
@@ -22,4 +41,12 @@
 
 .addButtonDisabled:hover {
   background-color: var(--tertiary);
+}
+
+.addButtonDisabledLight {
+  background-color: var(--fg-secondary-light);
+}
+
+.addButtonDisabledLight:hover {
+  background-color: var(--fg-secondary-light);
 }

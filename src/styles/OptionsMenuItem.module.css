@@ -4,9 +4,26 @@
   align-items: center;
   padding-inline: 1rem;
   height: 2.5rem;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease;
+}
+
+.menuItemLight {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding-inline: 1rem;
+  height: 2.5rem;
+  border: 1px solid var(--tertiary);
+  transition: background-color 0.2s ease;
 }
 
 .menuItem:first-of-type {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.menuItemLight:first-of-type {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -16,9 +33,19 @@
   border-bottom-right-radius: 8px;
 }
 
+.menuItemLight:last-of-type {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
 .menuItem:hover {
   cursor: pointer;
   background-color: var(--bg-secondary-dark);
+}
+
+.menuItemLight:hover {
+  cursor: pointer;
+  background-color: var(--bg-secondary-light);
 }
 
 .warnColor {

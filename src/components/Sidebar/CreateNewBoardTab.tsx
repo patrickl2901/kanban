@@ -1,7 +1,8 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import boardIcon from "../../assets/book-solid.svg";
 import styles from "./BoardTab.module.css";
 import { BoardData } from "../../types/BoardData";
+import { ColorThemeContext } from "../../context/ColorThemeContext";
 
 type CreateNewBoardTabProps = {
   setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
@@ -14,6 +15,8 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
   setBoards,
   setSelectedBoard,
 }) => {
+  const theme = useContext(ColorThemeContext);
+
   const [showTitleInput, setShowTitleInput] = useState<boolean>(false);
 
   const toggleShowTitleInput = () => {
@@ -55,7 +58,11 @@ const CreateNewBoardTab: FC<CreateNewBoardTabProps> = ({
             name="boardTitle"
             autoFocus
             autoComplete="off"
-            className={styles.formTextInput}
+            className={
+              theme === "dark"
+                ? styles.formTextInput
+                : styles.formTextInputLight
+            }
           />
           <input type="submit" className={styles.formSubmit} />
         </form>

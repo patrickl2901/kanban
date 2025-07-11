@@ -4,4 +4,15 @@
   padding: 1.5rem;
   overflow: auto;
   gap: 1rem;
+  transition: background-color, 0.3s ease;
+}
+
+.mainAreaLight {
+  display: flex;
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow: auto;
+  gap: 1rem;
+  background-color: var(--bg-primary-light);
+  transition: background-color, 0.3s ease;
 }

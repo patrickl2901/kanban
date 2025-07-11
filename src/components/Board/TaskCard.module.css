@@ -6,13 +6,33 @@
   border: 1px solid transparent;
 }
 
+.taskCardLight {
+  background-color: var(--bg-primary-light);
+  color: var(--tertiary);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+}
+
 .taskCard:hover {
   cursor: pointer;
   border: 1px solid white;
+}
+
+.taskCardLight:hover {
+  cursor: pointer;
+  border: 1px solid var(--tertiary);
 }
 
 .subtasks {
   margin: 0;
   font-size: 0.8rem;
   color: var(--fg-secondary-dark);
+}
+
+.subtasksLight {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--fg-secondary-light);
 }

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/ConfirmationModal.module.css";
+import { ColorThemeContext } from "../context/ColorThemeContext";
 
 type ConfirmationModalProps<F extends (...args: unknown[]) => unknown> = {
   setShowConfirmationModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,6 +15,8 @@ const ConfirmationModal = <F extends (...args: unknown[]) => unknown>({
   onConfirm,
   setConfirmationModalOpenedBy,
 }: ConfirmationModalProps<F>) => {
+  const theme = useContext(ColorThemeContext);
+
   const handleCancelClick = () => {
     setShowConfirmationModal(false);
     setConfirmationModalOpenedBy(undefined);
@@ -26,7 +29,13 @@ const ConfirmationModal = <F extends (...args: unknown[]) => unknown>({
   };
 
   return (
-    <div className={styles.confirmationModal}>
+    <div
+      className={
+        theme === "dark"
+          ? styles.confirmationModal
+          : styles.confirmationModalLight
+      }
+    >
       <span>Are you sure?</span>
       <div>
         <button className={styles.cancelButton} onClick={handleCancelClick}>

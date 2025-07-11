@@ -1,9 +1,10 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useContext, useRef, useState } from "react";
 import styles from "../styles/TaskDetailsModal.module.css";
 import { Task } from "../types/task";
 import { BoardData } from "../types/BoardData";
 import { Subtask } from "../types/Subtask";
 import { BoardColumn } from "../types/BoardColumn";
+import { ColorThemeContext } from "../context/ColorThemeContext";
 
 type TaskDetailsModalProps = {
   setShowTaskDetailsModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,7 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
   selectedTask,
   getDoneSubtasks,
 }) => {
+  const theme = useContext(ColorThemeContext);
   const [formState, setFormState] = useState<Task>(selectedTask);
   const [selectedStatus, setSelectedStatus] = useState<string>(
     selectedTask.status
@@ -206,28 +208,61 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
 
   // TODO: style custom checkbox to use accent color
   return (
-    <div className={styles.taskDetailsModal}>
-      <div className={styles.taskTitleContainer}>
+    <div
+      className={
+        theme === "dark"
+          ? styles.taskDetailsModal
+          : styles.taskDetailsModalLight
+      }
+    >
+      <div
+        className={
+          theme === "dark"
+            ? styles.taskTitleContainer
+            : styles.taskTitleContainerLight
+        }
+      >
         <p>{selectedTask?.title}</p>
         <button
           type="button"
-          className={styles.xButton}
+          className={theme === "dark" ? styles.xButton : styles.xButtonLight}
           onClick={handleCloseModal}
         >
           ✕
         </button>
       </div>
-      <p className={styles.taskDescription}>{selectedTask?.description}</p>
+      <p
+        className={
+          theme === "dark"
+            ? styles.taskDescription
+            : styles.taskDescriptionLight
+        }
+      >
+        {selectedTask?.description}
+      </p>
       <form onSubmit={handleSubmit} ref={formRef}>
         {formState!.subtasks.length > 0 ? (
-          <label className={styles.subtasksLabel}>
+          <label
+            className={
+              theme === "dark"
+                ? styles.subtasksLabel
+                : styles.subtasksLabelLight
+            }
+          >
             Subtasks ({getDoneSubtasks(formState?.subtasks)} of{" "}
             {formState?.subtasks.length})
           </label>
         ) : null}
         {formState?.subtasks.map((subtask, index) => {
           return (
-            <div className={styles.subtaskInputContainer} key={index}>
+            <div
+              className={
+                theme === "dark"
+                  ? styles.subtaskInputContainer
+                  : styles.subtaskInputContainerLight
+              }
+              key={index}
+            >
               <input
                 type="checkbox"
                 name={`subtask${index}`}
@@ -240,12 +275,20 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
             </div>
           );
         })}
-        <div className={styles.statusSelectContainer}>
+        <div
+          className={
+            theme === "dark"
+              ? styles.statusSelectContainer
+              : styles.statusSelectContainerLight
+          }
+        >
           <label htmlFor="status">Status</label>
           <select
             name="status"
             id="status"
-            className={styles.statusSelect}
+            className={
+              theme === "dark" ? styles.statusSelect : styles.statusSelectLight
+            }
             value={selectedStatus}
             onChange={handleSelectChange}
           >
@@ -261,7 +304,9 @@ const TaskDetailsModal: FC<TaskDetailsModalProps> = ({
         <div className={styles.submitButtonContainer}>
           <button
             type="button"
-            className={styles.deleteButton}
+            className={
+              theme === "dark" ? styles.deleteButton : styles.deleteButtonLight
+            }
             onClick={handleDeleteTask}
           >
             {deleteButtonText}

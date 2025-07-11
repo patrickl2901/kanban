@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import TaskCard from "./Board/TaskCard";
 import { BoardData } from "../types/BoardData";
 import styles from "../styles/MainArea.module.css";
@@ -6,6 +6,7 @@ import BoardColumn from "./Board/BoardColumn";
 import CreateNewBoardColumn from "./Board/CreateNewBoardColumn";
 import { Task } from "../types/task";
 import { Subtask } from "../types/Subtask";
+import { ColorThemeContext } from "../context/ColorThemeContext";
 
 type MainAreaProps = {
   board: BoardData | undefined;
@@ -32,6 +33,8 @@ const MainArea: FC<MainAreaProps> = ({
   setConfirmationModalOpenedBy,
   setColumnToDelete,
 }) => {
+  const theme = useContext(ColorThemeContext);
+
   const renderColumns = () => {
     if (!board) {
       return null;
@@ -71,7 +74,7 @@ const MainArea: FC<MainAreaProps> = ({
   };
 
   return (
-    <div className={styles.mainArea}>
+    <div className={theme === "dark" ? styles.mainArea : styles.mainAreaLight}>
       {renderColumns()}
       {board ? (
         <CreateNewBoardColumn

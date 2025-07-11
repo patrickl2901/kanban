@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import boardIcon from "../../assets/book-solid.svg";
 import styles from "./BoardTab.module.css";
 import { BoardData } from "../../types/BoardData";
+import { ColorThemeContext } from "../../context/ColorThemeContext";
 
 type BoardTabProps = {
   title: string;
@@ -18,6 +19,8 @@ const BoardTab: FC<BoardTabProps> = ({
   boards,
   id,
 }) => {
+  const theme = useContext(ColorThemeContext);
+
   const handleOnClick = () => {
     if (getBoardById(id) === undefined) {
       throw new Error("Board ID not found.");
@@ -43,12 +46,16 @@ const BoardTab: FC<BoardTabProps> = ({
 
   return (
     <div
-      className={`${styles.boardTab} ${
-        isSelected() ? styles.boardTabSelected : null
-      }`}
+      className={`${
+        theme === "dark" ? styles.boardTab : styles.boardTabLight
+      } ${isSelected() ? styles.boardTabSelected : null}`}
       onClick={handleOnClick}
     >
-      <img src={boardIcon} alt="Board" className={styles.boardIcon} />
+      <img
+        src={boardIcon}
+        alt="Board"
+        className={theme === "dark" ? styles.boardIcon : styles.boardIconLight}
+      />
       <span>{title}</span>
     </div>
   );
