@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import type { ColorTheme } from "./types/ColorTheme";
 import type { BoardData } from "./types/BoardData";
@@ -30,6 +30,10 @@ function App() {
   const [columnToDelete, setColumnToDelete] = useState<string | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    console.log(boards);
+  }, [boards]);
 
   const selectedBoardToDisplay = selectedBoard
     ? boards.find((b) => b.id === selectedBoard.id)
@@ -154,6 +158,7 @@ function App() {
           <MainArea
             board={selectedBoardToDisplay}
             setBoards={setBoards}
+            selectedBoard={selectedBoard}
             boards={boards}
             setShowTaskDetailsModal={setShowTaskDetailsModal}
             setSelectedTask={setSelectedTask}

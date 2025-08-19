@@ -9,7 +9,7 @@ type BoardColumnProps = {
   tasksCount: number;
   boards: Array<BoardData>;
   setBoards: React.Dispatch<React.SetStateAction<Array<BoardData>>>;
-  selectedBoard: BoardData;
+  selectedBoard: BoardData | undefined;
   setShowConfirmationModal: React.Dispatch<React.SetStateAction<boolean>>;
   setConfirmationModalOpenedBy: React.Dispatch<
     React.SetStateAction<"boardOptions" | "boardColumn" | undefined>
@@ -33,7 +33,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
   const handleDeleteColumn = () => {
     console.log("delete column clicked");
     for (let i = 0; i < boards.length; i++) {
-      if (boards[i].id === selectedBoard.id) {
+      if (boards[i].id === selectedBoard!.id) {
         for (let j = 0; j < boards[i].columns.length; j++) {
           if (boards[i].columns[j].name === name) {
             if (tasksCount === 0) {
@@ -48,7 +48,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
               };
               setBoards((prev) => {
                 return prev.map((board) => {
-                  return board.id === selectedBoard.id ? updatedBoard : board;
+                  return board.id === selectedBoard!.id ? updatedBoard : board;
                 });
               });
               return;
