@@ -26,10 +26,9 @@ const SortableTaskCard: FC<SortableTaskCardProps> = ({
     transition,
   };
 
-  // TODO: add drag handle to card to avoid click events being intercepted
   // TODO: make cards draggable to different column
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} style={style}>
       <TaskCard
         name={task.title}
         subtasks={task.subtasks}
@@ -37,6 +36,8 @@ const SortableTaskCard: FC<SortableTaskCardProps> = ({
         setSelectedTask={setSelectedTask}
         task={task}
         getDoneSubtasks={getDoneSubtasks}
+        dragAttributes={attributes}
+        dragListeners={listeners}
       />
     </div>
   );

@@ -47,20 +47,19 @@ const SortableColumn: FC<SortableColumnProps> = ({
     transition,
   };
 
-  // TODO: add drag handle to column to avoid click events being intercepted
-
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} style={style}>
       <BoardColumn
         name={column.name}
         tasksCount={column.tasks.length}
-        // pass other props you already use in BoardColumn
         setShowConfirmationModal={setShowConfirmationModal}
         setConfirmationModalOpenedBy={setConfirmationModalOpenedBy}
         setColumnToDelete={setColumnToDelete}
         boards={boards}
         setBoards={setBoards}
         selectedBoard={selectedBoard}
+        dragAttributes={attributes}
+        dragListeners={listeners}
       >
         <SortableContext
           items={column.tasks.map((task) => `task-${task.id}`)}

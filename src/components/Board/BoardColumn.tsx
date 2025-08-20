@@ -2,6 +2,8 @@ import React, { FC, useContext } from "react";
 import styles from "./BoardColumn.module.css";
 import { BoardData } from "../../types/BoardData";
 import { ColorThemeContext } from "../../context/ColorThemeContext";
+import { DraggableAttributes } from "@dnd-kit/core";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 type BoardColumnProps = {
   children: React.ReactNode;
@@ -15,6 +17,8 @@ type BoardColumnProps = {
     React.SetStateAction<"boardOptions" | "boardColumn" | undefined>
   >;
   setColumnToDelete: React.Dispatch<React.SetStateAction<string | undefined>>;
+  dragAttributes: DraggableAttributes;
+  dragListeners: SyntheticListenerMap | undefined;
 };
 
 const BoardColumn: FC<BoardColumnProps> = ({
@@ -27,6 +31,8 @@ const BoardColumn: FC<BoardColumnProps> = ({
   setShowConfirmationModal,
   setConfirmationModalOpenedBy,
   setColumnToDelete,
+  dragAttributes,
+  dragListeners
 }) => {
   const theme = useContext(ColorThemeContext);
 
@@ -70,7 +76,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
           theme === "dark" ? styles.columnHeader : styles.columnHeaderLight
         }
       >
-        <div className={styles.columnStatus}>
+        <div className={styles.columnStatus} {...dragAttributes} {...dragListeners}>
           {name} ({tasksCount})
         </div>
         <button

@@ -4,6 +4,8 @@
   padding: 1rem;
   margin-top: 1rem;
   border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
 }
 
 .taskCardLight {
@@ -13,6 +15,8 @@
   padding: 1rem;
   margin-top: 1rem;
   border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
 }
 
 .taskCard:hover {
@@ -23,6 +27,19 @@
 .taskCardLight:hover {
   cursor: pointer;
   border: 1px solid var(--tertiary);
+}
+
+.taskCardContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.dragHandle {
+  transform: rotate(90deg);
+}
+
+.dragHandle:hover {
+  cursor: grab;
 }
 
 .subtasks {

@@ -7,13 +7,11 @@
 .columnHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .columnHeaderLight {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .columnHeaderLight div {
@@ -30,6 +28,14 @@
 .columnHeaderLight button:hover {
   background: transparent;
   color: var(--bg-secondary-dark);
+}
+
+.columnStatus {
+  flex-grow: 1;
+}
+
+.columnStatus:hover {
+  cursor: grab;
 }
 
 .deleteButton {
