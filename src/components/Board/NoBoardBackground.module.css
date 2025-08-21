@@ -1,0 +1,26 @@
+.noBoardBackground {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 30vw;
+}
+
+.noBoardBackgroundImg {
+  height: 30vw;
+  filter: grayscale(100%);
+  opacity: 20%;
+}
+
+.noBoardText {
+  color: var(--bg-secondary-dark);
+  transition: color 0.3s ease;
+}
+
+.noBoardTextLight {
+  color: var(--fg-secondary-dark);
+  transition: color 0.3s ease;
+}

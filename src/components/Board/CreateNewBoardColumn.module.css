@@ -20,7 +20,7 @@
   background: #eeeeee;
   background: linear-gradient(
     rgba(238, 238, 238, 0.3) 0%,
-    rgba(119, 119, 119, 0.3) 90%
+    rgba(160, 160, 160, 0.3) 90%
   );
   color: var(--fg-secondary-light);
   min-width: 18rem;

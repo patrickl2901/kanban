@@ -13,6 +13,7 @@ import {
 } from "@dnd-kit/sortable";
 import SortableColumn from "./Board/SortableColumn";
 import { BoardColumn } from "../types/BoardColumn";
+import NoBoardBackground from "./Board/NoBoardBackground";
 
 type MainAreaProps = {
   board: BoardData | undefined;
@@ -122,7 +123,7 @@ const MainArea: FC<MainAreaProps> = ({
 
   const renderColumns = () => {
     if (!board) {
-      return null;
+      return <NoBoardBackground />;
     }
     if (!board.columns) {
       return null;
